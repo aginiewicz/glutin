@@ -288,7 +288,7 @@ impl GlContext for Window {
 
     #[inline]
     fn share_with_opencl(&self) -> SharedContextForCL {
-        return SharedContextForCL::NotAvailable;
+        SharedContextForCL::NotAvailable
     }
 }
 

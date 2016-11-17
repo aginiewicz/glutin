@@ -324,7 +324,7 @@ impl GlContext for Context {
 
     #[inline]
     fn share_with_opencl(&self) -> SharedContextForCL {
-        return SharedContextForCL::Egl{
+        SharedContextForCL::Egl {
             context: self.context,
             display: self.display
         }

@@ -15,9 +15,9 @@ pub type SomeContext = *const c_void;
 pub type SomeDisplay = *const c_void;
 
 pub enum SharedContextForCL {
-  Egl{context: SomeContext, display: SomeDisplay},
-  Glx{context: SomeContext, display: SomeDisplay},
-  Wgl{context: SomeContext, handle: SomeDisplay},
-  Cgl{sharegroup: SomeDisplay},
+  Egl {context: SomeContext, display: SomeDisplay},
+  Glx {context: SomeContext, display: SomeDisplay},
+  Wgl {context: SomeContext, handle: SomeDisplay},
+  Cgl {sharegroup: SomeDisplay},
   NotAvailable
 }

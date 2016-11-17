@@ -149,7 +149,7 @@ impl GlContext for Context {
 
     #[inline]
     fn share_with_opencl(&self) -> SharedContextForCL {
-        return SharedContextForCL::Glx{
+        SharedContextForCL::Glx {
             context: self.context,
             display: self.display as *const c_void
         }

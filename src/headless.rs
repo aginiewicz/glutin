@@ -130,6 +130,11 @@ impl HeadlessContext {
     #[inline]
     pub fn set_window_resize_callback(&mut self, _: Option<fn(u32, u32)>) {
     }
+
+    #[inline]
+    pub fn share_with_opencl(&self) -> SharedContextForCL {
+        self.context.share_with_opencl()
+    }
 }
 
 impl GlContext for HeadlessContext {
@@ -165,7 +170,7 @@ impl GlContext for HeadlessContext {
 
     #[inline]
     fn share_with_opencl(&self) -> SharedContextForCL {
-        return SharedContextForCL::NotAvailable;
+        self.context.share_with_opencl()
     }
 }
 
