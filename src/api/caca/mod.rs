@@ -2,6 +2,7 @@
 #![allow(unused_variables, dead_code)]
 
 use libc;
+use api::SharedContextForCL;
 use api::osmesa::{OsMesaContext, OsMesaCreationError};
 
 use Api;
@@ -283,6 +284,11 @@ impl GlContext for Window {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.opengl.get_pixel_format()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        return SharedContextForCL::NotAvailable;
     }
 }
 

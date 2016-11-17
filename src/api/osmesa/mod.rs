@@ -2,6 +2,8 @@
 
 extern crate osmesa_sys;
 
+use api::SharedContextForCL;
+
 use Api;
 use ContextError;
 use CreationError;
@@ -165,6 +167,11 @@ impl GlContext for OsMesaContext {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         unimplemented!();
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        return SharedContextForCL::NotAvailable;
     }
 }
 

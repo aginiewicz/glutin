@@ -8,6 +8,7 @@ use GlContext;
 use PixelFormat;
 use PixelFormatRequirements;
 
+use api::SharedContextForCL;
 use api::osmesa::{self, OsMesaContext};
 
 pub use self::api_dispatch::{Window};
@@ -69,5 +70,10 @@ impl GlContext for HeadlessContext {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.0.get_pixel_format()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        self.0.share_with_opencl()
     }
 }

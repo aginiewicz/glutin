@@ -13,6 +13,7 @@ use super::wayland;
 use super::x11;
 use Event;
 
+use api::SharedContextForCL;
 use winit::os::unix::WindowExt;
 
 #[derive(Clone, Default)]
@@ -243,6 +244,14 @@ impl GlContext for Window {
         match self.display_server {
             DisplayServer::X(ref w) => w.get_pixel_format(),
             DisplayServer::Wayland(ref w) => w.get_pixel_format()
+        }
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        match self.display_server {
+            DisplayServer::X(ref w) => w.share_with_opencl(),
+            DisplayServer::Wayland(ref w) => w.share_with_opencl()
         }
     }
 }

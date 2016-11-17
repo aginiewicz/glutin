@@ -12,8 +12,11 @@ use PixelFormatRequirements;
 use ReleaseBehavior;
 use Robustness;
 
+use api::SharedContextForCL;
+
 use libc;
 use libc::c_int;
+use std::os::raw::c_void;
 use std::ffi::{CStr, CString};
 use std::{mem, ptr};
 
@@ -142,6 +145,14 @@ impl GlContext for Context {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.pixel_format.clone()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        return SharedContextForCL::Glx{
+            context: self.context,
+            display: self.display as *const c_void
+        }
     }
 }
 

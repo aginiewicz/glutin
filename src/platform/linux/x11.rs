@@ -19,6 +19,7 @@ use PixelFormatRequirements;
 
 use std::ffi::CString;
 
+use api::SharedContextForCL;
 use api::glx::Context as GlxContext;
 use api::egl;
 use api::egl::Context as EglContext;
@@ -269,6 +270,15 @@ impl GlContext for Window {
             Context::Glx(ref ctxt) => ctxt.get_pixel_format(),
             Context::Egl(ref ctxt) => ctxt.get_pixel_format(),
             Context::None => panic!()
+        }
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        match self.context {
+            Context::Glx(ref ctxt) => ctxt.share_with_opencl(),
+            Context::Egl(ref ctxt) => ctxt.share_with_opencl(),
+            Context::None => SharedContextForCL::NotAvailable
         }
     }
 }

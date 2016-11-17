@@ -2,6 +2,7 @@ use std::ffi::CString;
 use winit;
 use winit::os::unix::WindowExt;
 use {ContextError, CreationError, GlAttributes, GlContext, PixelFormat, PixelFormatRequirements};
+use api::SharedContextForCL;
 use api::dlopen;
 use api::egl;
 use api::egl::Context as EglContext;
@@ -131,5 +132,10 @@ impl GlContext for Window {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.context.get_pixel_format().clone()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        self.context.share_with_opencl()
     }
 }

@@ -15,6 +15,7 @@ pub use winit::WindowProxy;
 pub use winit::{AvailableMonitorsIter};
 pub use winit::{get_primary_monitor, get_available_monitors};
 pub use winit::{MonitorId};
+use api::SharedContextForCL;
 
 use libc;
 use platform;
@@ -443,6 +444,10 @@ impl Window {
         self.window.swap_buffers()
     }
 
+    pub fn share_with_opencl(&self) -> SharedContextForCL {
+        self.window.share_with_opencl()
+    }
+
     /// DEPRECATED. Gets the native platform specific display for this window.
     /// This is typically only required when integrating with
     /// other libraries that need this information.
@@ -548,5 +553,10 @@ impl GlContext for Window {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.get_pixel_format()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        self.share_with_opencl()
     }
 }

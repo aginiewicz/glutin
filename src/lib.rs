@@ -67,6 +67,7 @@ pub use headless::{HeadlessRendererBuilder, HeadlessContext};
 pub use window::{WindowProxy, PollEventsIterator, WaitEventsIterator};
 pub use window::{AvailableMonitorsIter, MonitorId, get_available_monitors, get_primary_monitor};
 pub use winit::NativeMonitorId;
+pub use api::SharedContextForCL;
 
 use std::io;
 
@@ -143,6 +144,9 @@ pub trait GlContext {
 
     /// Returns the pixel format of the main framebuffer of the context.
     fn get_pixel_format(&self) -> PixelFormat;
+
+    /// Returns data required for sharing context with OpenCL.
+    fn share_with_opencl(&self) -> SharedContextForCL;
 }
 
 /// Error that can happen while creating a window or a headless renderer.

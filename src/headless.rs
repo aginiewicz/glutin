@@ -9,6 +9,7 @@ use PixelFormat;
 use PixelFormatRequirements;
 use Robustness;
 
+use api::SharedContextForCL;
 use platform;
 
 /// Object that allows you to build headless contexts.
@@ -160,6 +161,11 @@ impl GlContext for HeadlessContext {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.context.get_pixel_format()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        return SharedContextForCL::NotAvailable;
     }
 }
 

@@ -17,6 +17,7 @@ use std::ffi::{CStr, CString};
 use std::os::raw::{c_void, c_int};
 use std::{mem, ptr};
 
+use api::SharedContextForCL;
 pub mod ffi;
 
 /// Specifies the type of display passed as `native_display`.
@@ -319,6 +320,14 @@ impl GlContext for Context {
     #[inline]
     fn get_pixel_format(&self) -> PixelFormat {
         self.pixel_format.clone()
+    }
+
+    #[inline]
+    fn share_with_opencl(&self) -> SharedContextForCL {
+        return SharedContextForCL::Egl{
+            context: self.context,
+            display: self.display
+        }
     }
 }
 
